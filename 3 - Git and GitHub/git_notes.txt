@@ -30,3 +30,8 @@ git commit -m "Description."
 
 -Check the history
 git log
+
+git log --oneline
+to minimize the data on the commit. Just the initial hash and the description
+
+This is an example problamatic functionality.
