@@ -1,0 +1,122 @@
+
+body {
+    background: linear-gradient(to right, #242124, #FEFEFA);
+    font-family: 'Courier New', Courier, monospace;
+  
+  }
+  .navbar {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    padding: 50px;
+    background: linear-gradient(to right, #242124, #FEFEFA);
+    
+  
+  }
+  .navbar-list {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      
+    }
+  
+  .navbar-list li {
+    margin-left: 20px; /* Add space between items */
+    
+  }
+  
+  .navbar-list li a {
+  
+    text-decoration: none;
+    color: #242124;
+    font-size: 17.3536px;
+    font-weight: 520;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+  text-align: center; 
+    padding:5px;
+    margin-right: 5px;
+ 
+  
+  }
+
+  h1 {
+    font-size: 80px;
+    text-align: center;
+    color:whitesmoke;
+  }
+  h2 {
+    font-size: 25px;
+    text-align: center;
+    color: #242124;
+    font-size: 40px;
+    margin-top: -10px;
+    color:whitesmoke;
+  }
+  p {
+    text-align: justify;
+    color:whitesmoke;
+    font-size: 39px;
+
+  }
+.list-container {
+    font-size: 25px;
+    text-align: justify;
+    color:whitesmoke;
+    margin-top: 100px;
+}
+.contact1{
+    padding:100px;
+    margin:100;
+
+  }
+.email {
+    color:whitesmoke;
+    text-decoration: none;
+}
+.form-container {
+    display: flex;
+    justify-content: right;
+    font-size: 39px;
+    color: #242124;
+    padding: 100px;
+
+}
+button[type="submit"] {
+        padding: 12px 20px;
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+button[type="submit"] {
+  padding: 12px 20px;
+  background-color: #242124;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+    
+button[type="submit"]:hover {
+    color: #242124;
+    background-color: #FEFEFA;
+  }
+  button[type="reset"] {
+    padding: 12px 20px;
+    background-color: #242124;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+      
+  button[type="reset"]:hover {
+      color: #242124;
+      background-color: #FEFEFA;
+    }
+

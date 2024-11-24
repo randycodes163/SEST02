@@ -1,0 +1,92 @@
+
+body {
+    background: linear-gradient(to right, #242124, #FEFEFA);
+    font-family: 'Courier New', Courier, monospace;
+  
+  }
+  .navbar {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    padding: 50px;
+    background: linear-gradient(to right, #242124, #FEFEFA);
+    
+  
+  }
+  .navbar-list {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      
+    }
+  
+  .navbar-list li {
+    margin-left: 20px; /* Add space between items */
+    
+  }
+  
+  .navbar-list li a {
+  
+    text-decoration: none;
+    color: #242124;
+    font-size: 17.3536px;
+    font-weight: 520;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+  text-align: center; 
+    padding:5px;
+    margin-right: 5px;
+ 
+  
+  }
+  
+
+  h1 {
+    font-size: 80px;
+    text-align: center;
+    color:whitesmoke;
+
+  }
+ 
+h2{
+    display:flex;
+    justify-content: justify;
+    color:whitesmoke;
+}
+.image-container {
+    display: flex; /* Enables Flexbox layout */
+    flex-direction: row; /* Stacks the images vertically */
+    gap: 100px; /* Adds space between images (instead of margin-bottom) */
+    justify-content: center;
+  }
+  .img1 {
+    width: 700px;
+    border: solid 20px #242124;
+    border-radius: 60px;
+    border-style: groove;
+  }
+  .img2 {
+    width: 700px;
+    height: auto;
+    border: solid 20px #242124;
+    border-radius: 60px;
+    border-style: groove;
+  }
+  .vid-container {
+    display: flex; /* Enables Flexbox layout */
+
+    justify-content: center;
+  }
+  .vid1 {
+    width: 700px;
+    height: 525px;
+    border: solid 20px #242124;
+    border-radius: 60px;
+    border-style: groove;
+  }
+
+  footer {
+    text-align: right;
+    color: #242124;
+    vertical-align: bottom;
+  }

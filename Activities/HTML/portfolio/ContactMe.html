@@ -8,11 +8,13 @@
       crossorigin="anonymous"
     ></script>
     <title>Contact Me</title>
+    <link rel="stylesheet" href="ContactMe.css">
+    <title></title>
   </head>
   <body>
     <header>
-      <nav>
-        <ul>
+      <nav class="navbar">
+        <ul class="navbar-list">
           <li><a href="index.html">Home</a></li>
           <li><a href="Experience.html">Experience</a></li>
           <li><a href="Food.html">Food</a></li>
@@ -22,22 +24,21 @@
       </nav>
     </header>
     <main>
-      <section>
+      <section class="contact2">
+        <div>
         <h1>Contact me here!</h1>
-        <form action="" method="get" enctype="multipart/form-data">
-          <div>
-            <p>Lets get this conversation started. We love questions and feedback.
-            <br />
-            We're always happy to help! Here are some ways to contact us.
-          </p>
-          </div>
-          <div>
-            <ul>
+        </div>
+        <div class="contact-container">
+          <h2>Lets get this conversation started. We love questions and feedback.
+          </h2>
+          <div class="contact1">
+           <p>We're always happy to help! <br> Here are some ways to contact us.</p>
+       
+            <ul class="list-container">
               <li>
                 <span><i class="fa-regular fa-envelope"></i></span
-                ><a href="mailto:randyromaraog0101@gmail.com">
-                  randyromaraog0101@gmail.com</a
-                >
+                ><a class="email" href="mailto:randyromaraog0101@gmail.com">
+                  randyromaraog0101@gmail.com</a>
               </li>
               <li>
                 <span><i class="fa-solid fa-phone"></i></span>+64 858 248 966
@@ -48,7 +49,13 @@
             <a href="#"><i class="fa-brands fa-instagram"></i></a>
             <a href="#"><i class="fa-brands fa-twitter"></i></a>
           </div>
-          <div>
+
+        </div>
+        </section>
+        <section class="form-container">
+        <div>
+        <form action="" method="get" enctype="multipart/form-data">
+        
             <label for="name-id">Name:</label>
             <input
               type="text"
@@ -65,9 +72,7 @@
               placeholder="johndoe@gmail.com"
               required
             />
-          </div>
-
-          <div>
+            <div>
             <label for="message-id">Message:</label>
             <br />
             <textarea
@@ -77,7 +82,8 @@
               cols="30"
               rows="10"
             ></textarea>
-            <br />
+          </div>
+            
             <select name="user-send" id="send-id" required>
               <option value="N">Send Now</option>
               <option value="L">Schedule send</option>
@@ -90,10 +96,12 @@
               name="meeting-datetime-local"
               id="datetime-local-id"
             />
-          </div>
+          <div>
           <button type="submit">Submit</button>
           <button type="reset">Reset</button>
+        </div>
         </form>
+      </div>
       </section>
 
       <footer>

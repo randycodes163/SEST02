@@ -1,0 +1,95 @@
+
+
+.navbar {
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    padding: 50px;
+    background: linear-gradient(to right, #242124, #FEFEFA);
+    
+  
+  }
+  .navbar-list {
+      list-style: none;
+      display: flex;
+      margin: 0;
+      padding: 0;
+      
+    }
+  
+  .navbar-list li {
+    margin-left: 20px; /* Add space between items */
+    
+  }
+  
+  .navbar-list li a {
+  
+    text-decoration: none;
+    color: #242124;
+    font-size: 17.3536px;
+    font-weight: 520;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
+  text-align: center; 
+    padding:5px;
+    margin-right: 5px;
+  
+  }
+
+body {
+    background: linear-gradient(to right, #242124, #FEFEFA);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.nav-experience {
+    display: flex; /* Enable flexbox layout */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    
+}
+
+table {
+    border-collapse: collapse;
+    width: 50%;
+    text-align: justify;
+  
+}
+th {
+    text-align: left;
+}
+table,th,td {
+    padding: 30px;
+    border: 1px solid #ddd;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    color: #242124;
+    
+    
+    
+    
+}
+h1 {
+    font-size: 80px;
+    color: #242124;
+}
+ 
+.nav-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 100px;
+
+}
+td {
+    font-size: 25px;
+}
+th {
+    font-size: 40px;
+}
+footer {
+    position: absolute;
+    bottom: 0;  /* Position at the bottom */
+    right: 0;   /* Position at the right */
+    padding: 10px; /* Optional: Padding inside the footer */
+    color: #242124
+  }
+  

@@ -1,0 +1,91 @@
+
+body {
+  background: linear-gradient(to right, #242124, #FEFEFA);
+  font-family: 'Courier New', Courier, monospace;
+
+}
+.navbar {
+  display: flex;
+  justify-content: flex-end; /* Align items to the right */
+  padding: 50px;
+  background: linear-gradient(to right, #242124, #FEFEFA);
+  
+
+}
+.navbar-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    
+  }
+
+.navbar-list li {
+  margin-left: 20px; /* Add space between items */
+  
+}
+
+.navbar-list li a {
+
+  text-decoration: none;
+  color: #242124;
+  font-size: 17.3536px;
+  font-weight: 520;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+text-align: center; 
+  padding:5px;
+  margin-right: 5px;
+
+
+}
+
+.home {
+  display: flex;
+  align-items: center;
+  height:100vh;
+  padding-top: 0px;
+  padding-right: 50px;
+  padding-left: 50px;
+  background: linear-gradient(to right, #242124, #FEFEFA)
+}
+.home-info h1{
+  font-size: 80px;
+  text-align: justify;
+  color:whitesmoke;
+ 
+}
+.home-info h2 {
+  font-size: 40px;
+  margin-top: -10px;
+  color:whitesmoke;
+}
+.home-info p {
+  font-size: 25px;
+  margin: 10px 0 25px;
+  color:whitesmoke;
+}
+
+
+.img-item {
+  width: 700px;
+  height: auto;
+  padding-right: 100px;
+  padding-top: 10;
+  border: 5px solid #242124;
+  border-style: hidden;
+  border-radius: 60px;   
+  overflow: hidden;
+  mix-blend-mode: multiply;
+  border-color: #555D50;
+  
+}
+footer {
+  text-align: right;
+  color: #242124;
+  vertical-align: bottom;
+}
+
+
+
+
