@@ -70,3 +70,27 @@ body {
     /* grid-area: 6 / 1 / 7 / 7; */
     grid-area: footer;
   }
+  footer.footer-section div.icons-copyright div.icons {
+    /* [row-start] / [column-start] / [row-end] / [column-end] */
+    grid-area: 1/1/2/3;
+  }
+
+  footer.footer-section div.icons-copyright div.copyright {
+    /* [row-start] / [column-start] / [row-end] / [column-end] */
+    grid-area: 3/3/1/7;
+    text-align: center;
+  }
+
+  footer.footer-section div.icons-copyright div.icons button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    background-color: white;
+    border-radius: 50%;
+    border: none;
+  }
+
+  footer.footer-section div.icons-copyright div.icons button:hover {
+    background-color: #3bd950;
+    color: white;
+  }
