@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+  </head>
+  <body>
+    <script>
+      let min = 1;
+      let max = 10;
+      let attempts = 0;
+      let guessedNumber;
+
+      let secretNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+      console.log(secretNumber);
+
+      console.log("Lets play a game!");
+
+      do {
+        guessedNumber = parseInt(prompt("Guess a number between 1 and 10:"));
+
+        attempts++;
+
+        if (guessedNumber === secretNumber) {
+          console.log(
+            `Congratulations! You guessed the correct number: ${secretNumber}.`
+          );
+          break;
+        } else if (guessedNumber < secretNumber) {
+          console.log("Too low! Try again.");
+        } else if (guessedNumber > secretNumber) {
+          console.log("Too high! Try again.");
+        }
+      } while (guessedNumber !== secretNumber);
+
+      console.log(
+        `It took you ${attempts} attempts to guess the correct number.`
+      );
+    </script>
+  </body>
+</html>
