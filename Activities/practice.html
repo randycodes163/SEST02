@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library Tracker Activity</title>
+</head>
+<body>
+        <script>
+            const library = [
+                {
+                    title: "The Alchemist",
+                    author: "Paulo Coelho, 1988",
+                    isAvailable: true,
+                },
+                {
+                    title: "Make Your Bed",
+                    author: "William H. McRaven, 2017",
+                    isAvailable: true,
+                },
+                {
+                    title: "Becoming",
+                    author: "Michelle Obama, 2018",
+                    isAvailable: true,
+                },
+            ];
+
+
+                    function displayAvailableBooks() {
+         
+                    const availableBooks = library.filter(book => book.isAvailable);
+
+                    const result = availableBooks.map(book => {
+                        return { title: book.title, author: book.author }; 
+                     });
+
+                     console.log(result);
+                    }
+                
+            
+
+            function BorrowBook(title) {
+
+            const book = library.find(book => book.title === title);
+
+            if (book) {
+                if (book.isAvailable) {
+                    book.isAvailable = false;
+                    console.log(`The book "${book.title}" has been marked as not available.`);
+                } else {
+                    console.log(`The book "${book.title}" is already marked as not available.`);
+                }
+            } else {
+                console.log(`The book "${title}" was not found in the library.`);
+            }
+            }
+
+
+
+            // Test the function by calling it
+
+            // BorrowBook("Make Your Bed"); 
+             // Mark "1984" as not available
+            // BorrowBook("1984");
+             // BorrowBook("The Alchemist);
+
+
+        // console.log(displayAvailableBooks());
+        </script>
+</body>
+</html>
