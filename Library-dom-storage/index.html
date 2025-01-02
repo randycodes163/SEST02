@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Tracker</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="readAll()">
+    <div>
+      <div class="form_container">
+        <form action="" class="add-book">
+          <input type="text" class="title" placeholder="Title"/>
+          <input type="text" class="author" placeholder="Author"/>
+          <button onclick="create()">Add A Book</button>
+        </form>
+        <table>
+          <thead>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Action</th>
+          </thead>
+          <tbody class="data_table"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

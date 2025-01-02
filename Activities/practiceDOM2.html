@@ -3,43 +3,37 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Task Manager</title>
-
-    <!-- Font Awesome Icons -->
-    <script
-      src="https://kit.fontawesome.com/9fc08e307b.js"
-      crossorigin="anonymous"
-    ></script>
-
-    <!-- External CSS -->
+    <title>Library Tracker Activity</title>
     <link rel="stylesheet" href="practiceDOM2.css" />
   </head>
-
   <body>
-    <h1 id="title">Task Manager</h1>
+    <h1>Library Tracker</h1>
 
-    <!-- To-do Form -->
-    <form>
-      <input type="text" class="todo-input" />
-      <button class="todo-button" type="submit">
-        <i class="fas fa-plus-square"></i>
-      </button>
-
-      <select class="filter-todo">
-        <option value="all">All</option>
-        <option value="completed">Completed</option>
-        <option value="uncompleted">Uncompleted</option>
-      </select>
-    </form>
-
-    <!-- List of To-dos -->
-    <div class="todo-container">
-      <ul class="todo-list"></ul>
+    <!-- Buttons -->
+    <div class="buttons">
+      <button id="displayBooksButton">Display Available Books</button>
+      <button id="borrowBookButton">Borrow Book</button>
+      <button id="returnBookButton">Return Book</button>
     </div>
 
-    <!-- External JavaScript -->
+    <!-- Input Field -->
+    <div class="wrapper">
+      <label for="bookTitle">Enter Book Title:</label>
+      <input type="text" id="bookTitle" placeholder="Enter book title here" />
+    </div>
+
+    <div class="add-book-form">
+      <label for="newBookTitle">Book Title:</label>
+      <input type="text" id="newBookTitle" placeholder="Enter new book title here" />
+    
+      <label for="newBookAuthor">Book Author:</label>
+      <input type="text" id="newBookAuthor" placeholder="Enter new book author here" />
+    
+      <button id="addBookButton">Add Book</button>
+    </div>
     <script src="practiceDOM2.js"></script>
+
+      <!-- Result Section -->
+      <div id="result"></div>
   </body>
 </html>
-
-<!-- <div></div> -->

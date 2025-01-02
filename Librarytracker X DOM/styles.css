@@ -1,0 +1,11 @@
+.borrowed {
+  text-decoration: line-through;
+}
+.returned {
+  text-decoration: none;
+}
+#book-list {
+  margin-top: 20px;
+  padding: 0;
+  list-style: none; /* Remove bullet points */
+}

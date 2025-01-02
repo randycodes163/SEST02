@@ -88,8 +88,8 @@ i {
 }
 
 /* BUTTONS */
-.trash-btn,
-.complete-btn {
+.return-btn,
+.borrow-btn {
   background: #fe4a49;
   color: white;
   border: none;
@@ -98,7 +98,7 @@ i {
   font-size: 1rem;
 }
 
-.complete-btn {
+.borrow-btn {
   background-color: #06d6a0;
 }
 

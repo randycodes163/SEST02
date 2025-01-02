@@ -1,130 +1,107 @@
-/* General Styling */
-* {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  body {
-    background-color: #a8dadc;
-    min-height: 100vh;
-  }
-  
-  #title {
-    font-size: 4rem;
-    text-align: center;
-    margin: 3rem;
-  }
-  
-  /* FORM */
-  form {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    margin: 2rem;
-  }
-  
-  form input,
-  form button {
-    padding: 0.5rem;
-    font-size: 2rem;
-    border: none;
-    background: #fffffc;
-  }
-  
-  form input {
-    width: 350px;
-  }
-  
-  form button {
-    background: #fffffc;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-  
-  form button:hover {
-    background: #457b9d;
-    color: #fffffc;
-  }
-  
-  /* TODO CONTAINER */
-  .todo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .todo-list {
-    min-width: 30%;
-    list-style: none;
-  }
-  
-  .todo {
-    margin: 0.5rem;
-    background: #fffffc;
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: all 0.5s ease;
-  }
-  
-  .todo-item {
-    padding: 0rem 0.5rem;
-  }
-  
-  .todo li {
-    flex: 1;
-  }
-  
-  i {
-    pointer-events: none;
-  }
-  
-  .fall {
-    transform: translateY(8rem) rotateZ(20deg);
-    opacity: 0;
-  }
-  
-  /* BUTTONS */
-  .trash-btn,
-  .complete-btn {
-    background: #fe4a49;
-    color: white;
-    border: none;
-    padding: 1rem;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-  
-  .complete-btn {
-    background-color: #06d6a0;
-  }
-  
-  .completed {
-    text-decoration: line-through;
-    opacity: 0.5;
-  }
-  
-  /* FILTER */
-  select {
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    -ms-appearance: none;
-    appearance: none;
-    outline: 0;
-    box-shadow: none;
-    border: 0 !important;
-    background-image: none;
-  }
-  
-  .filter-todo {
-    background-color: #457b9d;
-    width: 12rem;
-    margin: 1rem;
-    padding: 1rem;
-    font-size: 1.2rem;
-    color: #f1faee;
-    cursor: pointer;
-  }
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  color: #333;
+}
+.wrapper {
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 20px;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+
+div input {
+  padding: 10px;
+  width: 250px;
+  margin-left: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+label {
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+#result {
+  margin: 20px auto;
+  padding: 15px;
+  width: 50%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(102, 8, 8, 0.267);
+}
+
+#result h2 {
+  margin: 0 0 10px 0;
+  color: #27ae60;
+}
+
+#result p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+/* Add Book Form */
+.add-book-form {
+  margin: 20px auto;
+  padding: 15px;
+  width: 80%;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-book-form input, .add-book-form button {
+  margin-top: 10px;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.add-book-form button {
+  background-color: #2ecc71;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-book-form button:hover {
+  background-color: #27ae60;
+}

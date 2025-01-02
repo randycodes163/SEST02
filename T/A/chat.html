@@ -1,97 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS Animation</title>'
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Tracker Activity</title>
     <style>
-    
-        .container {
-        width: 400px;
-        height: 600px;
-        border: 8px solid black;
-        position: absolute;
-        /* top, bottom, left, right */
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background-color: #f9f9f9;
       }
-      .ball {
-        width: 100px;
-        height: 100px;
-        background-color: #c52233;
-        border: 8px solid #580c1f;
-        border-radius: 50%;
-        position: absolute;
-        /* top, bottom, left, right */
-        left: 50%;
-        transform: translateX(-50%);
-        /* == ANIMATION == */
-        animation-name: fall;
-        animation-duration: 1000ms;
-        animation-delay: 600ms;
-        /* values: 1s, 1000ms */
-        animation-iteration-count: 3;
-        /* Default(1), number, infinite  */
-        animation-timing-function: ease-in;
-        /* Default(ease), ease-in, ease-out, ease-in-out, linear */
-        animation-direction: normal;
-        /* Default(normal), reverse, alternate, alternate-reverse */
-        animation-fill-mode: none;
-        /* Default(none), forwards, backwards */
-        /* forwards: apply the style at the last keyframe after the animation. */
-        /* backwards: apply the style at the first keyframe before the animation. */
-        /* both: begin at the style specified in the from, end at the style specified at the to */
-        /* transform: translateX(50%); */
-        
-        /* == SHORTHAND == */
-        /* animation: [name] [duration] [timing-function] [delay] [iteration-count][direction] [fillmode]; */
-        animation: bounce 1000ms ease-in 600ms infinite normal none;
-        
+      h1 {
+        color: #333;
       }
-      .shadow {
-        width: 80px;
-        height: 10px;
-        border-radius: 90%;
-        background-image: radial-gradient(#242124 10%, #696969 90%);
-        position: absolute;
-        bottom: 0%;
-        left: 50%;
-        transform: translateX(-50%);
-        animation: shadow 1000ms ease-in 600ms infinite normal none;
-        animation-direction: normal;
-        animation-timing-function: ease-in;
-
-      } 
-
-      @keyframes bounce {
-        0% {
-          transform: translate(-50%, 0);
-        }
-        50% {
-          transform: translateX(-50%) translateY(490px) scale(1.08, 0.8);
-        }
-        100% {
-          transform: translate(-50%, 0);
-        }
-    }
-    @keyframes shadow {
-        0% {
-          transform: translate(-50%) scaleX(.5);
-        }
-        50% {
-          transform: translate(-50%) scaleX(1.5);
-        }
-        100% {
-          transform: translate(-50%) scaleX(.5);
-        }
-    }
+      .form-container {
+        margin: 20px 0;
+      }
+      button,
+      input[type="submit"] {
+        padding: 10px 20px;
+        font-size: 16px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      button:hover,
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 300px;
+        margin-right: 10px;
+      }
+      #result {
+        margin-top: 20px;
+        padding: 10px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      .book-list {
+        margin: 10px 0;
+      }
+      .book-item {
+        margin-bottom: 5px;
+      }
     </style>
-</head>
-<body>
-    <div class="container">
-    <div class="ball"></div>
-    <div class="shadow"></div>
-</div>
-</body>
+  </head>
+  <body>
+    <h1>Library Tracker</h1>
+
+    <!-- Form to Display All Books -->
+    <div class="form-container">
+      <form onsubmit="handleShowBooks(event)">
+        <button type="submit">Display All Books</button>
+      </form>
+    </div>
+
+    <!-- Form to Borrow a Book -->
+    <div class="form-container">
+      <form onsubmit="handleBorrow(event)">
+        <label for="bookTitle">Enter Book Title to Borrow:</label><br />
+        <input type="text" id="bookTitle" placeholder="Book Title" required />
+        <input type="submit" value="Borrow Book" />
+      </form>
+    </div>
+
+    <!-- Result Section -->
+    <div id="result">
+      <strong>Library Updates:</strong>
+      <div class="book-list" id="bookList"></div>
+    </div>
+
+    <script>
+      const library = [
+        {
+          title: "The Alchemist",
+          author: "Paulo Coelho, 1988",
+          isAvailable: true,
+        },
+        {
+          title: "Make Your Bed",
+          author: "William H. McRaven, 2017",
+          isAvailable: true,
+        },
+        {
+          title: "Becoming",
+          author: "Michelle Obama, 2018",
+          isAvailable: true,
+        },
+      ];
+
+      // Function to Display All Books in the DOM
+      function displayAllBooks() {
+        const bookListDiv = document.getElementById("bookList");
+        bookListDiv.innerHTML = ""; // Clear previous content
+
+        if (library.length === 0) {
+          bookListDiv.innerHTML = "<p>No books found.</p>";
+          return;
+        }
+
+        library.forEach((book) => {
+          const bookItem = document.createElement("div");
+          bookItem.className = "book-item";
+          bookItem.textContent = `${book.title} by ${book.author} - ${
+            book.isAvailable ? "Available" : "Not Available"
+          }`;
+          bookListDiv.appendChild(bookItem);
+        });
+      }
+
+      // Function to Handle Form Submission for Displaying All Books
+      function handleShowBooks(event) {
+        event.preventDefault();
+        displayAllBooks();
+      }
+
+      // Function to Borrow a Book
+      function BorrowBook(title) {
+        const book = library.find(
+          (book) => book.title.toLowerCase() === title.toLowerCase()
+        );
+        if (book) {
+          if (book.isAvailable) {
+            book.isAvailable = false;
+            return `The book "${book.title}" has been borrowed successfully.`;
+          } else {
+            return `The book "${book.title}" is already borrowed.`;
+          }
+        } else {
+          return `The book "${title}" was not found in the library.`;
+        }
+      }
+
+      // Function to Handle Borrow Book Form Submission
+      function handleBorrow(event) {
+        event.preventDefault();
+        const title = document.getElementById("bookTitle").value.trim();
+        const resultDiv = document.getElementById("result");
+        const message = BorrowBook(title);
+
+        // Show the message in the result section
+        const messageDiv = document.createElement("p");
+        messageDiv.textContent = message;
+        resultDiv.prepend(messageDiv);
+
+        // Clear the input field and refresh the book list
+        document.getElementById("bookTitle").value = "";
+        displayAllBooks();
+      }
+
+      // Initialize the Book List Display
+      displayAllBooks();
+    </script>
+  </body>
 </html>

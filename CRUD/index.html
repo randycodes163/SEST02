@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD // Library Tracker v2</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <fieldset>
+      <legend>
+        <h2>Library Tracker</h2>
+      </legend>
+      <form action="" id="form">
+        <input type="text" id="title" placeholder="Title" name="title" /> <br />
+        <br />
+        <input type="text" id="author" placeholder="Author" name="author" />
+        <br />
+        <br />
+        <input type="button" value="Add a Book" id="btn" onclick="Submit()" />
+        <input type="reset" value="Clear" id="reset" />
+      </form>
+    </fieldset>
+    <div id="msg"></div>
+    <br />
+    <fieldset>
+      <legend><h2>Data from Local Storage</h2></legend>
+      <table border="2" id="table">
+        <tr>
+          <td class=".col">Title</td>
+          <td class=".col">Author</td>
+          <td class=".col">Action</td>
+        </tr>
+      </table>
+    </fieldset>
+  </body>
+  <script src="script.js"></script>
+</html>
+
+!

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CRUD // Library Tracker v2</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://kit.fontawesome.com/9fc08e307b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <fieldset>
+      <legend>
+        <h2>Library Tracker</h2>
+      </legend>
+      <form action="" id="form">
+        <input type="text" id="title" placeholder="Title" name="title" /> <br />
+        <br />
+        <input type="text" id="author" placeholder="Author" name="author" />
+        <br />
+        <br />
+        <button id="btn" type="submit">Add a Book</button>
+        <button id="reset" type="reset">Clear</button>
+        <!-- <input type="button" value="Add a Book" id="btn" onclick="Submit()" />
+        <input type="reset" value="Clear" id="reset" /> -->
+      </form>
+    </fieldset>
+    <br />
+    <br />
+    <fieldset>
+      <legend>
+        <h2>Data from Local Storage</h2>
+      </legend>
+      <div id="book-container">
+        <ul id="book-list"></ul>
+      </div>
+    </fieldset>
+    <br />
+  </body>
+  <script src="app.js"></script>
+</html>
