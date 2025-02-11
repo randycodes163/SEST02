@@ -1,5 +1,6 @@
 /*
     Conditional Rendering
+
     control on what gets rendered in our application.
 */
 
@@ -10,6 +11,8 @@ function UsersList() {
   const isLoggedIn = true;
   const username = "John Doe";
   const loggedInElement = <em>{username}</em>;
+
+  const userList = ["David", "Michael", "Lili"];
 
   return (
     <>
@@ -22,4 +25,5 @@ function UsersList() {
     </>
   );
 }
+
 export default UsersList;

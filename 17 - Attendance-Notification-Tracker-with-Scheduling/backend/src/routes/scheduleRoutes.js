@@ -1,22 +1,26 @@
 const express = require("express");
 const router = express.Router();
 const {
-  addSchedule,
-  timeIn,
-  timeOut,
-  getSchedule,
+  addWeeklySchedule,
+  getEmployeeSchedule,
+  getAllSchedules,
+  deleteSchedule,
+  updateSchedule,
 } = require("../controllers/scheduleController");
 
-// POST: Add weekly schedule for employee (with rest days)
-router.post("/", addSchedule);  // Ensure this matches your Postman request
+// POST: Add weekly schedule for an employee
+router.post("/weekly", addWeeklySchedule); // Use this route for adding weekly schedules
 
-// PUT: Time in for employee
-router.put("/time-in", timeIn);
+// GET: Get all schedules
+router.get("/", getAllSchedules); // Use this route to fetch all schedules
 
-// PUT: Time out for employee
-router.put("/time-out", timeOut);
+// GET: Get a specific employee's schedule by empID
+router.get("/:id", getEmployeeSchedule); // Use this route to fetch a specific employee's schedule by ID
 
-// GET: Get schedule for employee for a particular week
-router.get("/:empID/:week", getSchedule);
+// DELETE: Delete a specific schedule by scheduleId
+router.delete("/:scheduleId", deleteSchedule); // Use this route to delete a schedule by ID
+
+// PUT: Update a specific schedule by scheduleId
+router.put("/:scheduleId", updateSchedule); // Use this route to update a schedule by ID
 
 module.exports = router;

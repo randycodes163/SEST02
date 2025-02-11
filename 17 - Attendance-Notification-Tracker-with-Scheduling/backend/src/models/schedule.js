@@ -1,30 +1,25 @@
+// models/schedule.js
 const mongoose = require("mongoose");
 
+// Get the specific database connection using `useDb`
+const db = mongoose.connection.useDb("attendance_db");
+
+// Define the schema for a schedule
 const scheduleSchema = new mongoose.Schema({
-  empID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Employee",  // Link to the Employee model
-    required: true,
-  },
-  week: {
-    type: String,  // e.g., "Week 1", "Week 2"
-    required: true,
-  },
+  empID: { type: mongoose.Schema.Types.ObjectId, ref: "Employee", required: true },
+  week: { type: String, required: true }, // Stores the week (e.g., "2025-02-10")
   days: [
     {
-      day: { type: String, required: true },  // e.g., "Monday"
-      scheduledStart: { type: Date }, // Scheduled work start time (9 AM)
-      scheduledEnd: { type: Date },   // Scheduled work end time (6 PM)
-      timeIn: { type: Date },  // Employee's time-in
-      timeOut: { type: Date }, // Employee's time-out
-      isRestDay: { type: Boolean, default: false },  // Whether this day is a rest day
-      isAbsent: { type: Boolean, default: false }, // Whether the employee didn't clock in
-      tardiness: { type: Number, default: 0 },  // Number of minutes late
+      day: { type: String, required: true },
+      date: { type: String, required: true }, // Add date field here
+      isRestDay: { type: Boolean, required: true },
+      scheduledStartTime: { type: String, default: null },
+      scheduledEndTime: { type: String, default: null },
     },
   ],
 });
 
-// Create the model using the schema
-const Schedule = mongoose.model("Schedule", scheduleSchema);
+// Create the 'Schedule' model using the schema in the specific database
+const Schedule = db.model("Schedule", scheduleSchema);
 
 module.exports = Schedule;

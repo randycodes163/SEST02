@@ -1,11 +1,20 @@
+// controllers/emp.js
+
 const Emp = require("../models/emp");
 
-// POST: This part is for creating a new Employee
-// /data
+// POST: Create a new Employee
 const createEmployee = async (request, response) => {
   const { empID, empName, status, remarks } = request.body;
 
   try {
+    // Check if an employee with the same empID and empName already exists
+    const existingEmployee = await Emp.findOne({ empID, empName });
+    
+    if (existingEmployee) {
+      return response.status(400).json({ error: "Employee with the same empID and empName already exists." });
+    }
+
+    // Create the new employee if not found
     const emp = await Emp.create({
       empID,
       empName,

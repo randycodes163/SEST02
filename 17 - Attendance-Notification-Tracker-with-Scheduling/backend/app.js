@@ -1,33 +1,33 @@
 require('dotenv').config();
 const express = require("express");
 const mongoose = require("mongoose");
-const bodyParser = require("body-parser");
 
 // Import routes
-const empRoutes = require("./routes/emp");
-const scheduleRoutes = require("./routes/scheduleRoutes");
+const empRoutes = require("./src/routes/emp"); // Make sure this points to 'routes/emp.js'
+const scheduleRoutes = require("./src/routes/scheduleRoutes");
+const timeRoutes = require("./src/routes/timeRoutes");  // Time routes (Time In / Time Out)
 
 const app = express();
 
 // Middleware to parse JSON data
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Use routes
 app.use("/api/employees", empRoutes); // Employee routes
 app.use("/api/schedules", scheduleRoutes); // Schedule routes
+app.use("/api/time", timeRoutes);  // Time routes (Time In / Time Out)
 
 // MongoDB connection
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(process.env.MONGODB_URI)
   .then(() => {
-    // Get the connection instance for the correct database
-    const db = mongoose.connection.useDb("veco_db"); // Use the 'veco_db' database
-    console.log("Connected to MongoDB veo_db");
+    app.listen(process.env.PORT, () => {
+      console.info(
+        `Listening on port ${process.env.PORT} and connected to MongoDB Atlas.`
+      );
+    });
   })
-  .catch((err) => {
-    console.error("MongoDB connection error:", err);
+  .catch((error) => {
+    console.error(`Error connecting to MongoDB: ${error.message}`);
   });
 
-// Start server
-app.listen(process.env.PORT, () => {
-  console.log(`Server is running on port ${process.env.PORT}`);
-});

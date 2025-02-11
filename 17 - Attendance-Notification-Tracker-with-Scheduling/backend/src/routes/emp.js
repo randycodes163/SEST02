@@ -1,8 +1,6 @@
-// Import express and the router module
+// routes/emp.js
 const express = require("express");
 const router = express.Router();
-
-// Import controller functions
 const {
   createEmployee,
   getAllEmployee,

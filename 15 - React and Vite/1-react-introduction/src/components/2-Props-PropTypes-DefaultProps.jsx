@@ -1,6 +1,10 @@
 // CamelCase
 import propTypes from "prop-types";
 
+// props (properties)
+// props is an objects
+// share data between components.
+// if data is a string "" however, different data types should be enclosed with a pair of {}
 function Book() {
   return (
     <>
@@ -14,7 +18,7 @@ function Book() {
         title="Rich Dad Poor Dad"
         author="Robert Kiyosaki"
         rating={4.8}
-        isAvailable={false}
+        isAvailable={100}
       ></BookCard>
       <BookCard
         title="The Laws of Human Nature"
@@ -22,10 +26,20 @@ function Book() {
         rating={4.6}
         isAvailable={true}
       ></BookCard>
-      <BookCard> </BookCard>
+      <BookCard></BookCard>
     </>
   );
 }
+
+// function greet(name){
+// console.log("Hello " + name)}
+// greet("Anselmo")
+// greet("Randy")
+// Hello Anselmo
+// Hello Randy
+// parameters - placeholders
+// arguments - value that is passed to a functions parameters
+
 function BookCard(props) {
   // ternary operator
   // condition ? true : false
@@ -55,4 +69,5 @@ BookCard.defaultProps = {
   rating: 0.0,
   isAvailable: false,
 };
+
 export default Book;

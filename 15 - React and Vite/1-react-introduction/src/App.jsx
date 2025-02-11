@@ -1,8 +1,8 @@
-import Increment from "./components/4-UseState";
+import Products from "./components/7-FetchApi";
 function App() {
   return (
     <>
-      <Increment></Increment>
+      <Products></Products>
     </>
   );
 }
