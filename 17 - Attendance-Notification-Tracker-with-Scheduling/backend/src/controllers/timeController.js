@@ -5,36 +5,56 @@ const moment = require("moment"); // Import moment.js for handling date manipula
 
 // Time In - POST /api/time/timeIn
 const timeIn = async (req, res) => {
-  const { empID, date, timeIn } = req.body;
+  const { empID } = req.body; // This is the workday ID provided
 
   try {
-    const employee = await Emp.findById(empID);
-    if (!employee) return res.status(404).json({ error: "Employee not found" });
+    // Find employee by workday ID (empID field)
+    const employee = await Emp.findOne({ empID: empID });
+    if (!employee)
+      return res.status(404).json({ error: "Employee not found" });
 
-    // Check if the day is a rest day
-    const schedule = await Schedule.findOne({ empID });
-    const restDay = schedule.days.find(d => d.date === date && d.isRestDay);
-    if (restDay) return res.status(400).json({ error: "Cannot time-in on a rest day" });
+    const currentTimestamp = moment().format("YYYY-MM-DD HH:mm:ss");
+    const currentDate = moment().format("YYYY-MM-DD");
 
-    const existingTime = await Time.findOne({ empID, date });
+    // Check if employee has a schedule (schedule references employee via employee._id)
+    const schedule = await Schedule.findOne({ empID: employee._id });
+    if (!schedule) {
+      return res
+        .status(400)
+        .json({ error: "Cannot time-in: No schedule found for this employee" });
+    }
+
+    // Find today's schedule
+    const todaySchedule = schedule.days.find((d) => d.date === currentDate);
+    if (!todaySchedule) {
+      return res
+        .status(400)
+        .json({ error: "Cannot time-in: No schedule set for today" });
+    }
+
+    // Check if it's a rest day
+    if (todaySchedule.isRestDay) {
+      return res.status(400).json({ error: "Cannot time-in on a rest day" });
+    }
+
+    // Check if already timed in
+    const existingTime = await Time.findOne({ empID: employee._id, date: currentDate });
     if (existingTime && existingTime.timeIn) {
       return res.status(400).json({ error: "Already timed in" });
     }
 
-    // Manually set the timeIn (convert to Date)
-    const newTimeIn = moment(`${date} ${timeIn}`, "YYYY-MM-DD HH:mm:ss").toDate();
-
+    // Save new time-in record
     const newTime = new Time({
-      empID,
-      date,
-      timeIn: newTimeIn,
+      empID: employee._id,
+      date: currentDate,
+      timeIn: moment(currentTimestamp, "YYYY-MM-DD HH:mm:ss").toDate(),
     });
 
     await newTime.save();
     res.status(201).json({
-      message: "Successfully time-in",
-      empID,
-      date,
+      message: "Successfully timed in",
+      empID: employee.empID, // Return the workday ID as confirmation
+      date: newTime.date,
       timeIn: newTime.timeIn,
     });
   } catch (error) {
@@ -44,29 +64,33 @@ const timeIn = async (req, res) => {
 
 // Time Out - POST /api/time/timeOut
 const timeOut = async (req, res) => {
-  const { empID, date, timeOut } = req.body;
+  const { empID } = req.body; // Workday ID
 
   try {
-    const existingTime = await Time.findOne({ empID, date });
+    // Find employee by workday ID
+    const employee = await Emp.findOne({ empID: empID });
+    if (!employee)
+      return res.status(404).json({ error: "Employee not found" });
+
+    const currentTimestamp = moment().format("YYYY-MM-DD HH:mm:ss");
+    const currentDate = moment().format("YYYY-MM-DD");
+
+    const existingTime = await Time.findOne({ empID: employee._id, date: currentDate });
     if (!existingTime || !existingTime.timeIn) {
       return res.status(400).json({ error: "Cannot time-out without time-in" });
     }
 
-    // Ensure that time-out has not been already recorded
     if (existingTime.timeOut) {
-      return res.status(400).json({ error: "Already time-out" });
+      return res.status(400).json({ error: "Already timed out" });
     }
 
-    // Manually set the timeOut (convert to Date)
-    const newTimeOut = moment(`${date} ${timeOut}`, "YYYY-MM-DD HH:mm:ss").toDate();
-
-    existingTime.timeOut = newTimeOut;
+    existingTime.timeOut = moment(currentTimestamp, "YYYY-MM-DD HH:mm:ss").toDate();
     await existingTime.save();
 
     res.status(200).json({
-      message: "Successfully time-out",
-      empID,
-      date,
+      message: "Successfully timed out",
+      empID: employee.empID,
+      date: existingTime.date,
       timeOut: existingTime.timeOut,
     });
   } catch (error) {
@@ -79,18 +103,24 @@ const updateTimeIn = async (req, res) => {
   const { empID, date, timeIn } = req.body;
 
   try {
-    const existingTime = await Time.findOne({ empID, date });
+    // Find employee by workday ID
+    const employee = await Emp.findOne({ empID: empID });
+    if (!employee)
+      return res.status(404).json({ error: "Employee not found" });
+
+    const existingTime = await Time.findOne({ empID: employee._id, date: date });
     if (!existingTime) {
-      return res.status(404).json({ error: "No time record found for this employee on the given date" });
+      return res.status(404).json({
+        error: "No time record found for this employee on the given date",
+      });
     }
 
-    // Manually update timeIn (convert to Date)
     existingTime.timeIn = moment(`${date} ${timeIn}`, "YYYY-MM-DD HH:mm:ss").toDate();
     await existingTime.save();
 
     res.status(200).json({
       message: "Successfully updated time-in",
-      empID,
+      empID: employee.empID,
       date,
       timeIn: existingTime.timeIn,
     });
@@ -104,18 +134,24 @@ const updateTimeOut = async (req, res) => {
   const { empID, date, timeOut } = req.body;
 
   try {
-    const existingTime = await Time.findOne({ empID, date });
+    // Find employee by workday ID
+    const employee = await Emp.findOne({ empID: empID });
+    if (!employee)
+      return res.status(404).json({ error: "Employee not found" });
+
+    const existingTime = await Time.findOne({ empID: employee._id, date: date });
     if (!existingTime || !existingTime.timeIn) {
-      return res.status(404).json({ error: "No time-in record found for this employee on the given date" });
+      return res.status(404).json({
+        error: "No time-in record found for this employee on the given date",
+      });
     }
 
-    // Manually update timeOut (convert to Date)
     existingTime.timeOut = moment(`${date} ${timeOut}`, "YYYY-MM-DD HH:mm:ss").toDate();
     await existingTime.save();
 
     res.status(200).json({
       message: "Successfully updated time-out",
-      empID,
+      empID: employee.empID,
       date,
       timeOut: existingTime.timeOut,
     });
@@ -128,24 +164,51 @@ const updateTimeOut = async (req, res) => {
 const deleteTime = async (req, res) => {
   const { empID, date } = req.body;
 
+  // Check if both empID and date are provided
+  if (!empID || !date) {
+    return res.status(400).json({ error: "empID and date are required" });
+  }
+
+  // Convert empID to a number, since it's stored as a Number in the Employee model
+  const workdayID = Number(empID);
+
   try {
-    const existingTime = await Time.findOne({ empID, date });
+    // Find employee by workday ID
+    const employee = await Emp.findOne({ empID: workdayID });
+    if (!employee)
+      return res.status(404).json({ error: "Employee not found" });
+
+    // Find existing time record for the given date
+    const existingTime = await Time.findOne({ empID: employee._id, date: date });
     if (!existingTime) {
-      return res.status(404).json({ error: "No time records found" });
+      return res.status(404).json({ error: "No time record found for this employee on the given date" });
     }
 
-    await Time.findOneAndDelete({ empID, date });
+    // Delete the record
+    await Time.findOneAndDelete({ empID: employee._id, date: date });
     res.status(200).json({ message: "Time In/Out deleted successfully" });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
+// Get All Time Records for an Employee - GET /api/time/employee/:empID
+const getEmployeeTimeRecords = async (req, res) => {
+  // Here, req.params.empID is the workday ID
+  const workdayID = req.params.empID;
 
-// Display All Time In/Out Records - GET /api/time/all
-const getAllTimeRecords = async (req, res) => {
   try {
-    const times = await Time.find().populate("empID", "empName empID");
-    res.status(200).json(times);
+    // Find employee by workday ID
+    const employee = await Emp.findOne({ empID: workdayID });
+    if (!employee) {
+      return res.status(404).json({ error: "Employee not found" });
+    }
+
+    const records = await Time.find({ empID: employee._id }).sort({ date: -1 });
+    if (records.length === 0) {
+      return res.status(404).json({ error: "No time records found for this employee" });
+    }
+
+    res.status(200).json(records);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
@@ -157,5 +220,5 @@ module.exports = {
   updateTimeIn,
   updateTimeOut,
   deleteTime,
-  getAllTimeRecords,
+  getEmployeeTimeRecords,
 };

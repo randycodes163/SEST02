@@ -8,19 +8,19 @@ const {
   updateSchedule,
 } = require("../controllers/scheduleController");
 
-// POST: Add weekly schedule for an employee
-router.post("/weekly", addWeeklySchedule); // Use this route for adding weekly schedules
+// Add new schedule
+router.post("/", addWeeklySchedule);
 
-// GET: Get all schedules
-router.get("/", getAllSchedules); // Use this route to fetch all schedules
+// Get all schedules
+router.get("/", getAllSchedules);
 
-// GET: Get a specific employee's schedule by empID
-router.get("/:id", getEmployeeSchedule); // Use this route to fetch a specific employee's schedule by ID
+// Get a specific employee's schedule
+router.get("/:id", getEmployeeSchedule);
 
-// DELETE: Delete a specific schedule by scheduleId
-router.delete("/:scheduleId", deleteSchedule); // Use this route to delete a schedule by ID
+// Update a schedule
+router.put("/:scheduleId", updateSchedule);
 
-// PUT: Update a specific schedule by scheduleId
-router.put("/:scheduleId", updateSchedule); // Use this route to update a schedule by ID
+// Delete a schedule
+router.delete("/:scheduleId", deleteSchedule);
 
 module.exports = router;
